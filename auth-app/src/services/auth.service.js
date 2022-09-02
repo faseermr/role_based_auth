@@ -32,6 +32,10 @@ const login = (username, password) => {
       }
 
       return Promise.resolve(response.data);
+    })
+    .catch((err) => {
+      console.log(err.response);
+      return Promise.reject(err.response);
     });
 };
 

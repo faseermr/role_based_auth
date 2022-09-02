@@ -23,11 +23,16 @@ const Login = () => {
     onSubmit: (data) => {
       // e.preventDefault();
       console.log(data);
-      authService.login(data.username, data.password).then((res) => {
-        navigate("/dashboard");
-        window.location.reload();
-        //console.log(res);
-      });
+      authService
+        .login(data.username, data.password)
+        .then((res) => {
+          navigate("/dashboard");
+          window.location.reload();
+          //console.log(res);
+        })
+        .catch((err) => {
+          alert(err.data.message);
+        });
     },
   });
 

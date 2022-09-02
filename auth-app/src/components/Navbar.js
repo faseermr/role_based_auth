@@ -51,14 +51,21 @@ const Navbar = ({
         </div>
 
         {currentUser ? (
-          <div className="navbar-nav ml-auto" style={{ background: "red" }}>
+          <div
+            className="navbar-nav ml-auto"
+            style={{ background: "white", marginLeft: "900px" }}
+          >
             <li className="nav-item ">
-              <Link to="/dashboard" className="nav-link ">
+              <Link to="/dashboard" className="nav-link text-danger">
                 {currentUser.username}
               </Link>
             </li>
             <li className="nav-item">
-              <a href="/login" className="nav-link " onClick={logOut}>
+              <a
+                href="/login"
+                className="nav-link text-danger"
+                onClick={logOut}
+              >
                 LogOut
               </a>
             </li>

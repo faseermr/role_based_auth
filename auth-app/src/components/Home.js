@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
-import userService from "../services/user.service";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getHomeContent } from "../redux/action/Action";
 
 const Home = () => {
-  const [data, setData] = useState("");
+  const result = useSelector((state) => state.data.state);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    userService.getPublicContent().then((res) => {
-      setData(res.data);
-    });
+    dispatch(getHomeContent());
   }, []);
-  return <div>{data}</div>;
+  return <div>{result}</div>;
 };
 
 export default Home;

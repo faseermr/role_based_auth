@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Provider } from "react-redux";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import authService from "./services/auth.service";
@@ -11,6 +12,7 @@ import Student from "./components/Student";
 import Teacher from "./components/Teacher";
 import Admin from "./components/Admin";
 import PrivateRoutes from "./components/PrivateRoutes";
+import store from "./redux/store/store";
 
 const App = () => {
   const [showTeacherBoard, setShowTeacherBoard] = useState(false);
@@ -30,7 +32,7 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <Provider store={store}>
       <Router>
         <Navbar
           showAdminBoard={showAdminBoard}
@@ -52,7 +54,7 @@ const App = () => {
           </Routes>
         </div>
       </Router>
-    </div>
+    </Provider>
   );
 };
 

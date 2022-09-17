@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
-import userService from "../services/user.service";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAdminContent } from "../redux/action/Action";
+
 const Admin = () => {
-  const [data, setData] = useState("");
+  const result = useSelector((state) => state.data.state);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    userService.getAdminContent().then((res) => {
-      setData(res.data);
-    });
+    dispatch(getAdminContent());
   }, []);
-  return <div>{data}</div>;
+  return <div>{result}</div>;
 };
 
 export default Admin;

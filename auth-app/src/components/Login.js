@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import authService from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
@@ -6,10 +6,6 @@ import * as yup from "yup";
 
 const Login = () => {
   const navigate = useNavigate();
-  // const [data, setData] = useState({
-  //   username: "",
-  //   password: "",
-  // });
 
   const formik = useFormik({
     initialValues: {
@@ -36,22 +32,6 @@ const Login = () => {
     },
   });
 
-  // const userLogin = async (e) => {
-  //   e.preventDefault();
-  //   console.log(data);
-  //   authService.login(data.username, data.password).then((res) => {
-  //     navigate("/dashboard");
-  //     window.location.reload();
-  //     //console.log(res);
-  //   });
-  // };
-
-  // const onchange = (e) => {
-  //   setData({
-  //     ...data,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
   return (
     <div>
       <div className="container">

@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
-import userService from "../services/user.service";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getTeacherContent } from "../redux/action/Action";
+
 const Teacher = () => {
-  const [data, setData] = useState("");
+  const result = useSelector((state) => state.data.state);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    userService.getTeacherContent().then((res) => {
-      setData(res.data);
-    });
+    dispatch(getTeacherContent());
   }, []);
-  return <div>{data}</div>;
+  return <div>{result}</div>;
 };
 
 export default Teacher;

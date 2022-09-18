@@ -1,11 +1,16 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import authService from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { loginAction } from "../redux/action/Action";
 
 const Login = () => {
   const navigate = useNavigate();
+  const result = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -16,19 +21,26 @@ const Login = () => {
       username: yup.string().strict().required("required"),
       password: yup.string().strict().required("required"),
     }),
-    onSubmit: (data) => {
+    onSubmit: async (data) => {
+      const res = await dispatch(loginAction(data.username, data.password));
+      if (res) {
+        navigate("/dashboard");
+        window.location.reload();
+      }
+      console.log("check");
+      console.log(result);
       // e.preventDefault();
-      console.log(data);
-      authService
-        .login(data.username, data.password)
-        .then((res) => {
-          navigate("/dashboard");
-          window.location.reload();
-          //console.log(res);
-        })
-        .catch((err) => {
-          alert(err.data.message);
-        });
+      // console.log(data);
+      // authService
+      //   .login(data.username, data.password)
+      //   .then((res) => {
+      //     navigate("/dashboard");
+      //     window.location.reload();
+      //     //console.log(res);
+      //   })
+      //   .catch((err) => {
+      //     alert(err.data.message);
+      //   });
     },
   });
 

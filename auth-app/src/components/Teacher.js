@@ -9,7 +9,11 @@ const Teacher = () => {
   useEffect(() => {
     dispatch(getTeacherContent());
   }, []);
-  return <div>{result}</div>;
+  return (
+    <div>
+      <h1>{result}</h1>
+    </div>
+  );
 };
 
 export default Teacher;

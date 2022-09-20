@@ -64,7 +64,7 @@ export const getAdminContent = () => async (dispatch) => {
   }
 };
 
-// get login
+//  login action
 export const loginAction = (username, password) => async (dispatch) => {
   try {
     //console.log(username, password);
@@ -77,6 +77,19 @@ export const loginAction = (username, password) => async (dispatch) => {
     return Promise.resolve(res);
     //console.log(res);
   } catch (err) {
-    console.log(err);
+    return Promise.reject(err);
   }
 };
+
+// register action
+
+export const registerAction =
+  (username, email, password, roles) => async (dispatch) => {
+    try {
+      const res = await authService.register(username, email, password, roles);
+      // console.log(res);
+      return Promise.resolve(res);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  };

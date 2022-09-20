@@ -9,7 +9,12 @@ const Admin = () => {
   useEffect(() => {
     dispatch(getAdminContent());
   }, []);
-  return <div>{result}</div>;
+  return (
+    <div>
+      {" "}
+      <h1>{result}</h1>
+    </div>
+  );
 };
 
 export default Admin;

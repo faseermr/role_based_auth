@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import authService from "../services/auth.service";
+//import authService from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -27,20 +26,6 @@ const Login = () => {
         navigate("/dashboard");
         window.location.reload();
       }
-      console.log("check");
-      console.log(result);
-      // e.preventDefault();
-      // console.log(data);
-      // authService
-      //   .login(data.username, data.password)
-      //   .then((res) => {
-      //     navigate("/dashboard");
-      //     window.location.reload();
-      //     //console.log(res);
-      //   })
-      //   .catch((err) => {
-      //     alert(err.data.message);
-      //   });
     },
   });
 
@@ -73,9 +58,10 @@ const Login = () => {
                     type="text"
                     className="col form-control"
                     name="username"
+                    onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                   />
-                  {formik.errors.username ? (
+                  {formik.touched.username && formik.errors.username ? (
                     <div className="text-danger">{formik.errors.username}</div>
                   ) : (
                     ""
@@ -92,9 +78,10 @@ const Login = () => {
                     type="password"
                     className="col form-control"
                     name="password"
+                    onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                   />
-                  {formik.errors.password ? (
+                  {formik.touched.password && formik.errors.password ? (
                     <div className="text-danger">{formik.errors.password}</div>
                   ) : (
                     ""

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import authService from "../services/auth.service";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { registerAction } from "../redux/action/Action";
 
 const Register = () => {
+  //const result = useSelector((state) => state);
+  const dispatch = useDispatch();
   const [data, setData] = useState({
     username: "",
     email: "",
@@ -25,10 +28,9 @@ const Register = () => {
       roles: yup.string().strict().required("required"),
     }),
     onSubmit: (data) => {
-      // data.preventDefault();
-      //  console.log(data);
-      authService
-        .register(data.username, data.email, data.password, data.roles)
+      dispatch(
+        registerAction(data.username, data.email, data.password, data.roles)
+      )
         .then((res) => {
           //console.log(res);
           alert(res.data.message);
@@ -50,23 +52,6 @@ const Register = () => {
     },
   });
 
-  // const userRegister = async (e) => {
-  //   e.preventDefault();
-  //   console.log(data);
-  //   authService
-  //     .register(data.username, data.email, data.password, data.roles)
-  //     .then((res) => {
-  //       alert(res.data.message);
-  //       setData({ username: "", email: "", password: "", roles: "" });
-  //     });
-  // };
-
-  // const onchange = (e) => {
-  //   setData({
-  //     ...data,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
   return (
     <div
       className="card w-50 mx-auto mt-4"
@@ -93,9 +78,10 @@ const Register = () => {
                 aria-label="username-test"
                 name="username"
                 // value={data.username}
+                onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />
-              {formik.errors.username ? (
+              {formik.touched.username && formik.errors.username ? (
                 <div className="text-danger">{formik.errors.username}</div>
               ) : (
                 ""
@@ -114,9 +100,10 @@ const Register = () => {
                 aria-label="email-test"
                 name="email"
                 // value={data.email}
+                onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />
-              {formik.errors.email ? (
+              {formik.touched.email && formik.errors.email ? (
                 <div className="text-danger">{formik.errors.email}</div>
               ) : (
                 ""
@@ -132,6 +119,7 @@ const Register = () => {
               <select
                 className="form-select"
                 // value={data.roles}
+                onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 name="roles"
               >
@@ -140,7 +128,7 @@ const Register = () => {
                 <option>Student</option>
                 <option>Teacher</option>
               </select>
-              {formik.errors.roles ? (
+              {formik.touched.roles && formik.errors.roles ? (
                 <div className="text-danger">{formik.errors.roles}</div>
               ) : (
                 ""
@@ -159,9 +147,10 @@ const Register = () => {
                 aria-label="password-test"
                 name="password"
                 // value={data.password}
+                onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />
-              {formik.errors.password ? (
+              {formik.touched.password && formik.errors.password ? (
                 <div className="text-danger">{formik.errors.password}</div>
               ) : (
                 ""

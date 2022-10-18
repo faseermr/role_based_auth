@@ -15,8 +15,8 @@ const controller = require("../controller/user.controller");
 // };
 
 router.get("/all", controller.allAccess);
-router.get("/student", [verifyToken], controller.userBoard);
-router.get("/teacher", [verifyToken, isTeacher], controller.moderatorBoard);
+router.get("/student", [verifyToken], controller.studentBoard);
+router.get("/teacher", [verifyToken, isTeacher], controller.teacherBoard);
 router.get("/admin", [verifyToken, isAdmin], controller.adminBoard);
 
 module.exports = router;

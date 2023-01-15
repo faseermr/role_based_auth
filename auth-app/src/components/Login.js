@@ -21,10 +21,14 @@ const Login = () => {
       password: yup.string().strict().required("required"),
     }),
     onSubmit: async (data) => {
-      const res = await dispatch(loginAction(data.username, data.password));
-      if (res) {
-        navigate("/dashboard");
-        window.location.reload();
+      try {
+        const res = await dispatch(loginAction(data.username, data.password));
+        if (res) {
+          navigate("/dashboard");
+          window.location.reload();
+        }
+      } catch (error) {
+        alert(error.response.data.message);
       }
     },
   });

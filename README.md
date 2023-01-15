@@ -2,7 +2,7 @@ This is simple Role Based Authentication System using React, Node, Express, Mong
 
 Follow these steps to run the app on your local machine,
 
-Assume you have node & mysql installed
+Assume you have node & mongo db installed
 
     1)  Run "npm install" from the auth-app directory & Run "npm install" from the root directory.
 

@@ -7,7 +7,11 @@ const Student = () => {
       setData(res.data);
     });
   }, []);
-  return <div>{data}</div>;
+  return (
+    <div>
+      <h1>{data}</h1>
+    </div>
+  );
 };
 
 export default Student;
